@@ -56,6 +56,7 @@ public class RNTrackPlayer: RCTEventEmitter {
             "CAPABILITY_PLAY_FROM_ID": "NOOP",
             "CAPABILITY_PLAY_FROM_SEARCH": "NOOP",
             "CAPABILITY_PAUSE": Capability.pause.rawValue,
+            "CAPABILITY_TOGGLE_PLAY_PAUSE": Capability.togglePlayPause.rawValue,
             "CAPABILITY_STOP": Capability.stop.rawValue,
             "CAPABILITY_SEEK_TO": Capability.seek.rawValue,
             "CAPABILITY_SKIP": "NOOP",
@@ -78,6 +79,7 @@ public class RNTrackPlayer: RCTEventEmitter {
             "remote-stop",
             "remote-pause",
             "remote-play",
+            "remote-toggle-play-pause",
             "remote-next",
             "remote-seek",
             "remote-previous",
@@ -183,6 +185,11 @@ public class RNTrackPlayer: RCTEventEmitter {
         
         player.remoteCommandController.handlePlayCommand = { [weak self] _ in
             self?.sendEvent(withName: "remote-play", body: nil)
+            return MPRemoteCommandHandlerStatus.success
+        }
+
+        player.remoteCommandController.handleTogglePlayPauseCommand = { [weak self] _ in
+            self?.sendEvent(withName: "remote-toggle-play-pause", body: nil)
             return MPRemoteCommandHandlerStatus.success
         }
         
