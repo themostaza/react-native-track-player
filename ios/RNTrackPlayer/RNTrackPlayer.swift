@@ -188,11 +188,6 @@ public class RNTrackPlayer: RCTEventEmitter {
             return MPRemoteCommandHandlerStatus.success
         }
 
-        player.remoteCommandController.handleTogglePlayPauseCommand = { [weak self] _ in
-            self?.sendEvent(withName: "remote-toggle-play-pause", body: nil)
-            return MPRemoteCommandHandlerStatus.success
-        }
-        
         player.remoteCommandController.handlePreviousTrackCommand = { [weak self] _ in
             self?.sendEvent(withName: "remote-previous", body: nil)
             return MPRemoteCommandHandlerStatus.success
