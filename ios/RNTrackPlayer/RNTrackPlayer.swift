@@ -75,11 +75,10 @@ public class RNTrackPlayer: RCTEventEmitter {
             "playback-state",
             "playback-error",
             "playback-track-changed",
-            
+
             "remote-stop",
             "remote-pause",
             "remote-play",
-            "remote-toggle-play-pause",
             "remote-next",
             "remote-seek",
             "remote-previous",
