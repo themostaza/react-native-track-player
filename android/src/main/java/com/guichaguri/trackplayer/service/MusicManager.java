@@ -210,18 +210,21 @@ public class MusicManager implements OnAudioFocusChangeListener {
     public void onAudioFocusChange(int focus) {
         Log.d(Utils.LOG, "onDuck");
 
+        boolean permanent = false;
         boolean paused = false;
         boolean ducking = false;
 
         switch(focus) {
             case AudioManager.AUDIOFOCUS_LOSS:
+                permanent = true;
+                abandonFocus();
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                 paused = true;
                 break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                 ducking = true;
                 break;
-            case AudioManager.AUDIOFOCUS_GAIN:
+            default:
                 break;
         }
 
