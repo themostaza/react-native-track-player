@@ -241,12 +241,14 @@ public class MusicManager implements OnAudioFocusChangeListener {
         if(manager == null) {
             r = AudioManager.AUDIOFOCUS_REQUEST_FAILED;
         } else if(Build.VERSION.SDK_INT >= 26) {
+            boolean pauseWhenDucked = true;
             focus = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
                     .setOnAudioFocusChangeListener(this)
                     .setAudioAttributes(new AudioAttributes.Builder()
                             .setUsage(AudioAttributes.USAGE_MEDIA)
                             .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                             .build())
+                    .setWillPauseWhenDucked(pauseWhenDucked)
                     .build();
 
             r = manager.requestAudioFocus(focus);
